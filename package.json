@@ -1,7 +1,11 @@
 {
   "name": "ftgo-graphql-server",
   "packageManager": "yarn@3.6.1",
+  "scripts": {
+    "compile": "tsc"
+  },
   "devDependencies": {
-    "prettier": "^2"
+    "prettier": "^2",
+    "typescript": "~5"
   }
 }
