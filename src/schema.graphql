@@ -1,4 +1,5 @@
 type Query {
+  order(id: ID!): Order!
   consumer(id: ID!): Consumer!
   restaurant(id: ID!): Restaurant!
 }
@@ -10,6 +11,22 @@ type Money {
 type Consumer {
   id: ID!
   name: String!
+  orders: [Order!]!
+}
+
+type Order {
+  id: ID!
+  lineItems: [OrderLineItem!]!
+  consumer: Consumer
+  restaurant: Restaurant
+  deliveryInfo: DeliveryInfo!
+}
+
+type OrderLineItem {
+  quantity: Int!
+  menuItemId: String!
+  name: String!
+  price: Money!
 }
 
 type Restaurant {
@@ -22,4 +39,17 @@ type MenuItem {
   id: ID!
   name: String!
   price: Money!
+}
+
+type DeliveryInfo {
+  status: DeliveryStatus!
+  estimatedDeliveryTime: String
+  assignedCourier: String
+}
+
+enum DeliveryStatus {
+  PREPARING
+  READY_FOR_PICKUP
+  PICKED_UP
+  DELIVERED
 }
