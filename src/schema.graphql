@@ -10,6 +10,8 @@ type Query {
 type Mutation {
   createConsumer(c: ConsumerInfo!): Consumer!
 
+  acceptTicket(ticketId: ID!, readyBy: DateTimeISO!): ID!
+
   depositAccount(accountId: ID!, amount: MoneyInput!): Account!
   withdrawAccount(accountId: ID!, amount: MoneyInput!): Account!
 }
