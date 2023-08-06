@@ -28,6 +28,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
+            ["prettier", "npm:2.8.8"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -36,9 +37,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         ["workspace:.", {\
           "packageLocation": "./",\
           "packageDependencies": [\
-            ["ftgo-graphql-server", "workspace:."]\
+            ["ftgo-graphql-server", "workspace:."],\
+            ["prettier", "npm:2.8.8"]\
           ],\
           "linkType": "SOFT"\
+        }]\
+      ]],\
+      ["prettier", [\
+        ["npm:2.8.8", {\
+          "packageLocation": "./.yarn/cache/prettier-npm-2.8.8-430828a36c-b49e409431.zip/node_modules/prettier/",\
+          "packageDependencies": [\
+            ["prettier", "npm:2.8.8"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]]\
     ]\

@@ -1,4 +1,7 @@
 {
   "name": "ftgo-graphql-server",
-  "packageManager": "yarn@3.6.1"
+  "packageManager": "yarn@3.6.1",
+  "devDependencies": {
+    "prettier": "^2"
+  }
 }
