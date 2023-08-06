@@ -10,6 +10,9 @@ const config: CodegenConfig = {
         arrayInputCorrection: false,
         useIndexSignature: true,
         emitLegacyCommonJSImports: false,
+        scalars: {
+          DateTimeISO: "string",
+        },
       },
     },
     "./graphql.schema.json": {

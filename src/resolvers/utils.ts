@@ -5,6 +5,9 @@ import {
   Money,
   Order,
   Restaurant,
+  Ticket,
+  TicketLineItem,
+  TicketState,
 } from "../generated/graphql";
 import {
   AccountDetails as AccountDetailsInput,
@@ -13,6 +16,12 @@ import {
 import { Consumer as ConsumerInput } from "../proxies/consumer";
 import { Order as OrderHistoryInput } from "../proxies/order-history";
 import { Restaurant as RestaurantInput } from "../proxies/restaurant";
+import { Money as MoneyInput } from "../proxies/money";
+import {
+  Ticket as TicketInput,
+  TicketLineItem as TicketLineItemInput,
+  TicketStateMap,
+} from "@jangjunha/ftgo-proto/lib/tickets_pb";
 
 const emptyAccount = (id: string): Account => ({ id, balance: { amount: "" } });
 const emptyConsumer = (id: string): Consumer => ({
@@ -20,6 +29,11 @@ const emptyConsumer = (id: string): Consumer => ({
   name: "",
   account: emptyAccount(id),
   orders: [],
+});
+const emptyRestaurant = (id: string): Restaurant => ({
+  id,
+  name: "",
+  menuItems: [],
 });
 
 export const convertConsumer = (input: ConsumerInput): Consumer => ({
@@ -52,6 +66,53 @@ export const convertAccount = (input: AccountInput): Account => ({
 export const convertAccountDetails = (input: AccountDetailsInput): Account => ({
   id: input.id,
   balance: convertMoney(input.amount),
+});
+
+export const convertTicket = (input: TicketInput): Ticket => ({
+  id: input.getId(),
+  state: convertTicketState(input.getState()),
+  sequence: input.getSequence(),
+  lineItems: input.getLineitemsList().map(convertTicketLineItem),
+  restaurant: emptyRestaurant(input.getRestaurantid()),
+  readyBy: input.getReadyby()?.toDate().toISOString(),
+  acceptTime: input.getAccepttime()?.toDate().toISOString(),
+  preparingTime: input.getPreparingtime()?.toDate().toISOString(),
+  pickedUpTime: input.getPickeduptime()?.toDate().toISOString(),
+  readyForPickupTime: input.getReadyby()?.toDate().toISOString(),
+});
+
+const convertTicketState = (
+  input: TicketStateMap[keyof TicketStateMap]
+): TicketState => {
+  switch (input) {
+    case 0:
+      return TicketState.CreatePending;
+    case 1:
+      return TicketState.AwaitingAcceptance;
+    case 2:
+      return TicketState.Accepted;
+    case 3:
+      return TicketState.Preparing;
+    case 4:
+      return TicketState.ReadyForPickup;
+    case 5:
+      return TicketState.PickedUp;
+    case 6:
+      return TicketState.CancelPending;
+    case 7:
+      return TicketState.Cancelled;
+    case 8:
+      return TicketState.RevisionPending;
+    default:
+      const exhaustiveCheck: never = input;
+      throw new Error(`Unhandled ticket state case: ${exhaustiveCheck}`);
+  }
+};
+
+const convertTicketLineItem = (input: TicketLineItemInput): TicketLineItem => ({
+  quantity: input.getQuantity(),
+  menuItemId: input.getMenuitemid(),
+  name: input.getName(),
 });
 
 const convertMoney = (input: MoneyInput): Money => ({

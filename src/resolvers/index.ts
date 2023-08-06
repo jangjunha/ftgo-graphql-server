@@ -1,3 +1,4 @@
+import { resolvers as scalarResolvers } from "graphql-scalars";
 import { Resolvers } from "../generated/graphql";
 import { AccountingService } from "../proxies/accounting";
 import { OrderHistoryService } from "../proxies/order-history";
@@ -7,6 +8,7 @@ import Query from "./queries";
 import Mutation from "./mutations";
 import Consumer from "./consumer";
 import Order from "./order";
+import Ticket from "./ticket";
 
 export const orderHistoryService = new OrderHistoryService(
   process.env.ORDER_HISTORY_SERVICE_URL!
@@ -25,8 +27,10 @@ export const accountingService = new AccountingService(
 );
 
 export const resolver: Resolvers = {
+  ...scalarResolvers,
   Query,
   Mutation,
   Consumer,
   Order,
+  Ticket,
 };

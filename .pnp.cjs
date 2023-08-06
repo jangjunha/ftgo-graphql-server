@@ -33,10 +33,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graphql-codegen/introspection", "virtual:2f3d4db4da433dd71257f89c090b476cfba027be2252cd9183125fa535b6adcc52a109f820daf622e6b05a0472cc78c358983dc8344280a0825f27bd83686c39#npm:4.0.0"],\
             ["@graphql-codegen/typescript", "virtual:2f3d4db4da433dd71257f89c090b476cfba027be2252cd9183125fa535b6adcc52a109f820daf622e6b05a0472cc78c358983dc8344280a0825f27bd83686c39#npm:4.0.1"],\
             ["@graphql-codegen/typescript-resolvers", "virtual:2f3d4db4da433dd71257f89c090b476cfba027be2252cd9183125fa535b6adcc52a109f820daf622e6b05a0472cc78c358983dc8344280a0825f27bd83686c39#npm:4.0.1"],\
+            ["@grpc/grpc-js", "npm:1.9.0"],\
+            ["@jangjunha/ftgo-proto", "npm:0.1.0::__archiveUrl=https%3A%2F%2Fasia-northeast3-npm.pkg.dev%2Fftgo-jangjunha%2Fnpm-public%2F%40jangjunha%2Fftgo-proto%2F-%2F%40jangjunha%2Fftgo-proto-0.1.0.tgz"],\
             ["@parcel/watcher", "npm:2.2.0"],\
             ["@types/body-parser", "npm:1.19.2"],\
             ["@types/cors", "npm:2.8.13"],\
             ["@types/express", "npm:4.17.17"],\
+            ["@types/google-protobuf", "npm:3.15.6"],\
             ["@types/node", "npm:20.4.8"],\
             ["axios", "npm:1.4.0"],\
             ["body-parser", "npm:1.20.2"],\
@@ -44,7 +47,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["cors", "npm:2.8.5"],\
             ["dotenv", "npm:16.3.1"],\
             ["express", "npm:4.18.2"],\
+            ["google-protobuf", "npm:3.21.2"],\
             ["graphql", "npm:16.7.1"],\
+            ["graphql-scalars", "virtual:2f3d4db4da433dd71257f89c090b476cfba027be2252cd9183125fa535b6adcc52a109f820daf622e6b05a0472cc78c358983dc8344280a0825f27bd83686c39#npm:1.22.2"],\
             ["nodemon", "npm:3.0.1"],\
             ["prettier", "npm:2.8.8"],\
             ["typescript", "patch:typescript@npm%3A5.1.6#~builtin<compat/typescript>::version=5.1.6&hash=5da071"]\
@@ -2446,6 +2451,31 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@grpc/grpc-js", [\
+        ["npm:1.9.0", {\
+          "packageLocation": "./.yarn/cache/@grpc-grpc-js-npm-1.9.0-c0bb2dd66d-32817c84e4.zip/node_modules/@grpc/grpc-js/",\
+          "packageDependencies": [\
+            ["@grpc/grpc-js", "npm:1.9.0"],\
+            ["@grpc/proto-loader", "npm:0.7.8"],\
+            ["@types/node", "npm:20.4.8"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@grpc/proto-loader", [\
+        ["npm:0.7.8", {\
+          "packageLocation": "./.yarn/cache/@grpc-proto-loader-npm-0.7.8-f437a86550-0c7d755b08.zip/node_modules/@grpc/proto-loader/",\
+          "packageDependencies": [\
+            ["@grpc/proto-loader", "npm:0.7.8"],\
+            ["@types/long", "npm:4.0.2"],\
+            ["lodash.camelcase", "npm:4.3.0"],\
+            ["long", "npm:4.0.0"],\
+            ["protobufjs", "npm:7.2.4"],\
+            ["yargs", "npm:17.7.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@isaacs/cliui", [\
         ["npm:8.0.2", {\
           "packageLocation": "./.yarn/cache/@isaacs-cliui-npm-8.0.2-f4364666d5-4a473b9b32.zip/node_modules/@isaacs/cliui/",\
@@ -2466,6 +2496,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
               "wrap-ansi",\
               "npm:7.0.0"\
             ]]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@jangjunha/ftgo-proto", [\
+        ["npm:0.1.0::__archiveUrl=https%3A%2F%2Fasia-northeast3-npm.pkg.dev%2Fftgo-jangjunha%2Fnpm-public%2F%40jangjunha%2Fftgo-proto%2F-%2F%40jangjunha%2Fftgo-proto-0.1.0.tgz", {\
+          "packageLocation": "./.yarn/cache/@jangjunha-ftgo-proto-npm-0.1.0-8da2ed72a6-8b03f5d943.zip/node_modules/@jangjunha/ftgo-proto/",\
+          "packageDependencies": [\
+            ["@jangjunha/ftgo-proto", "npm:0.1.0::__archiveUrl=https%3A%2F%2Fasia-northeast3-npm.pkg.dev%2Fftgo-jangjunha%2Fnpm-public%2F%40jangjunha%2Fftgo-proto%2F-%2F%40jangjunha%2Fftgo-proto-0.1.0.tgz"],\
+            ["google-protobuf", "npm:3.21.2"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -2899,6 +2939,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/qs", "npm:6.9.7"],\
             ["@types/range-parser", "npm:1.2.4"],\
             ["@types/send", "npm:0.17.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/google-protobuf", [\
+        ["npm:3.15.6", {\
+          "packageLocation": "./.yarn/cache/@types-google-protobuf-npm-3.15.6-c2631bab69-e8f7cd9d26.zip/node_modules/@types/google-protobuf/",\
+          "packageDependencies": [\
+            ["@types/google-protobuf", "npm:3.15.6"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -4683,10 +4732,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graphql-codegen/introspection", "virtual:2f3d4db4da433dd71257f89c090b476cfba027be2252cd9183125fa535b6adcc52a109f820daf622e6b05a0472cc78c358983dc8344280a0825f27bd83686c39#npm:4.0.0"],\
             ["@graphql-codegen/typescript", "virtual:2f3d4db4da433dd71257f89c090b476cfba027be2252cd9183125fa535b6adcc52a109f820daf622e6b05a0472cc78c358983dc8344280a0825f27bd83686c39#npm:4.0.1"],\
             ["@graphql-codegen/typescript-resolvers", "virtual:2f3d4db4da433dd71257f89c090b476cfba027be2252cd9183125fa535b6adcc52a109f820daf622e6b05a0472cc78c358983dc8344280a0825f27bd83686c39#npm:4.0.1"],\
+            ["@grpc/grpc-js", "npm:1.9.0"],\
+            ["@jangjunha/ftgo-proto", "npm:0.1.0::__archiveUrl=https%3A%2F%2Fasia-northeast3-npm.pkg.dev%2Fftgo-jangjunha%2Fnpm-public%2F%40jangjunha%2Fftgo-proto%2F-%2F%40jangjunha%2Fftgo-proto-0.1.0.tgz"],\
             ["@parcel/watcher", "npm:2.2.0"],\
             ["@types/body-parser", "npm:1.19.2"],\
             ["@types/cors", "npm:2.8.13"],\
             ["@types/express", "npm:4.17.17"],\
+            ["@types/google-protobuf", "npm:3.15.6"],\
             ["@types/node", "npm:20.4.8"],\
             ["axios", "npm:1.4.0"],\
             ["body-parser", "npm:1.20.2"],\
@@ -4694,7 +4746,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["cors", "npm:2.8.5"],\
             ["dotenv", "npm:16.3.1"],\
             ["express", "npm:4.18.2"],\
+            ["google-protobuf", "npm:3.21.2"],\
             ["graphql", "npm:16.7.1"],\
+            ["graphql-scalars", "virtual:2f3d4db4da433dd71257f89c090b476cfba027be2252cd9183125fa535b6adcc52a109f820daf622e6b05a0472cc78c358983dc8344280a0825f27bd83686c39#npm:1.22.2"],\
             ["nodemon", "npm:3.0.1"],\
             ["prettier", "npm:2.8.8"],\
             ["typescript", "patch:typescript@npm%3A5.1.6#~builtin<compat/typescript>::version=5.1.6&hash=5da071"]\
@@ -4820,6 +4874,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["google-protobuf", [\
+        ["npm:3.21.2", {\
+          "packageLocation": "./.yarn/cache/google-protobuf-npm-3.21.2-7c82de39ab-3caa2e1e26.zip/node_modules/google-protobuf/",\
+          "packageDependencies": [\
+            ["google-protobuf", "npm:3.21.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["graceful-fs", [\
         ["npm:4.2.11", {\
           "packageLocation": "./.yarn/cache/graceful-fs-npm-4.2.11-24bb648a68-ac85f94da9.zip/node_modules/graceful-fs/",\
@@ -4891,6 +4954,29 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/graphql", null],\
             ["cross-fetch", "npm:3.1.8"],\
             ["graphql", "npm:16.7.1"]\
+          ],\
+          "packagePeers": [\
+            "@types/graphql",\
+            "graphql"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["graphql-scalars", [\
+        ["npm:1.22.2", {\
+          "packageLocation": "./.yarn/cache/graphql-scalars-npm-1.22.2-8e09e448b1-4a5e7aa2d8.zip/node_modules/graphql-scalars/",\
+          "packageDependencies": [\
+            ["graphql-scalars", "npm:1.22.2"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:2f3d4db4da433dd71257f89c090b476cfba027be2252cd9183125fa535b6adcc52a109f820daf622e6b05a0472cc78c358983dc8344280a0825f27bd83686c39#npm:1.22.2", {\
+          "packageLocation": "./.yarn/__virtual__/graphql-scalars-virtual-10f74f1cca/0/cache/graphql-scalars-npm-1.22.2-8e09e448b1-4a5e7aa2d8.zip/node_modules/graphql-scalars/",\
+          "packageDependencies": [\
+            ["graphql-scalars", "virtual:2f3d4db4da433dd71257f89c090b476cfba027be2252cd9183125fa535b6adcc52a109f820daf622e6b05a0472cc78c358983dc8344280a0825f27bd83686c39#npm:1.22.2"],\
+            ["@types/graphql", null],\
+            ["graphql", "npm:16.7.1"],\
+            ["tslib", "npm:2.6.1"]\
           ],\
           "packagePeers": [\
             "@types/graphql",\
@@ -5583,6 +5669,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["lodash.camelcase", [\
+        ["npm:4.3.0", {\
+          "packageLocation": "./.yarn/cache/lodash.camelcase-npm-4.3.0-bf268e3bf0-cb9227612f.zip/node_modules/lodash.camelcase/",\
+          "packageDependencies": [\
+            ["lodash.camelcase", "npm:4.3.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["lodash.sortby", [\
         ["npm:4.7.0", {\
           "packageLocation": "./.yarn/cache/lodash.sortby-npm-4.7.0-fda8ab950d-db170c9396.zip/node_modules/lodash.sortby/",\
@@ -5630,6 +5725,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/long-npm-4.0.0-ecd96a31ed-16afbe8f74.zip/node_modules/long/",\
           "packageDependencies": [\
             ["long", "npm:4.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:5.2.3", {\
+          "packageLocation": "./.yarn/cache/long-npm-5.2.3-61dddb7586-885ede7c3d.zip/node_modules/long/",\
+          "packageDependencies": [\
+            ["long", "npm:5.2.3"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -6482,6 +6584,27 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["promise-retry", "npm:2.0.1"],\
             ["err-code", "npm:2.0.3"],\
             ["retry", "npm:0.12.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["protobufjs", [\
+        ["npm:7.2.4", {\
+          "packageLocation": "./.yarn/unplugged/protobufjs-npm-7.2.4-c40bd79e8d/node_modules/protobufjs/",\
+          "packageDependencies": [\
+            ["protobufjs", "npm:7.2.4"],\
+            ["@protobufjs/aspromise", "npm:1.1.2"],\
+            ["@protobufjs/base64", "npm:1.1.2"],\
+            ["@protobufjs/codegen", "npm:2.0.4"],\
+            ["@protobufjs/eventemitter", "npm:1.1.0"],\
+            ["@protobufjs/fetch", "npm:1.1.0"],\
+            ["@protobufjs/float", "npm:1.0.2"],\
+            ["@protobufjs/inquire", "npm:1.1.0"],\
+            ["@protobufjs/path", "npm:1.1.2"],\
+            ["@protobufjs/pool", "npm:1.1.0"],\
+            ["@protobufjs/utf8", "npm:1.1.0"],\
+            ["@types/node", "npm:20.4.8"],\
+            ["long", "npm:5.2.3"]\
           ],\
           "linkType": "HARD"\
         }]\
