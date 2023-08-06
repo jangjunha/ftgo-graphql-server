@@ -22,6 +22,8 @@ import {
   TicketLineItem as TicketLineItemInput,
   TicketStateMap,
 } from "@jangjunha/ftgo-proto/lib/tickets_pb";
+import { Order as OrderInput } from "@jangjunha/ftgo-proto/lib/orders_pb";
+import { Money as MoneyPb } from "@jangjunha/ftgo-proto/lib/money_pb";
 
 const emptyAccount = (id: string): Account => ({ id, balance: { amount: "" } });
 const emptyConsumer = (id: string): Consumer => ({
@@ -40,6 +42,19 @@ export const convertConsumer = (input: ConsumerInput): Consumer => ({
   orders: [],
   account: emptyAccount(input.id),
   ...input,
+});
+
+export const convertOrder = (input: OrderInput): Order => ({
+  id: input.getId(),
+  lineItems: input.getLineitemsList().map((li) => ({
+    quantity: li.getQuantity(),
+    menuItemId: li.getMenuitemid(),
+    name: li.getName(),
+    price: convertMoneyPb(li.getPrice()!),
+  })),
+  restaurant: emptyRestaurant(input.getRestaurantid()),
+  consumer: emptyConsumer(input.getConsumerid()),
+  deliveryInfo: { status: DeliveryStatus.Preparing }, // TODO:
 });
 
 export const convertOrderHistory = (input: OrderHistoryInput): Order => ({
@@ -117,4 +132,8 @@ const convertTicketLineItem = (input: TicketLineItemInput): TicketLineItem => ({
 
 const convertMoney = (input: MoneyInput): Money => ({
   amount: input.amount,
+});
+
+const convertMoneyPb = (input: MoneyPb): Money => ({
+  amount: input.getAmount(),
 });

@@ -10,6 +10,8 @@ type Query {
 type Mutation {
   createConsumer(c: ConsumerInfo!): Consumer!
 
+  createOrder(o: CreateOrderInput!): Order!
+
   acceptTicket(ticketId: ID!, readyBy: DateTimeISO!): ID!
 
   depositAccount(accountId: ID!, amount: MoneyInput!): Account!
@@ -93,6 +95,18 @@ type DeliveryInfo {
 
 input ConsumerInfo {
   name: String!
+}
+
+input CreateOrderInput {
+  consumerId: String!
+  restaurantId: String!
+  lineItems: [MenuItemIdAndQuantity!]!
+  deliveryAddress: String!
+}
+
+input MenuItemIdAndQuantity {
+  menuItemId: String!
+  quantity: Int!
 }
 
 enum DeliveryStatus {
