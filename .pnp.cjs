@@ -32,6 +32,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graphql-codegen/cli", "virtual:2f3d4db4da433dd71257f89c090b476cfba027be2252cd9183125fa535b6adcc52a109f820daf622e6b05a0472cc78c358983dc8344280a0825f27bd83686c39#npm:5.0.0"],\
             ["@graphql-codegen/introspection", "virtual:2f3d4db4da433dd71257f89c090b476cfba027be2252cd9183125fa535b6adcc52a109f820daf622e6b05a0472cc78c358983dc8344280a0825f27bd83686c39#npm:4.0.0"],\
             ["@graphql-codegen/typescript", "virtual:2f3d4db4da433dd71257f89c090b476cfba027be2252cd9183125fa535b6adcc52a109f820daf622e6b05a0472cc78c358983dc8344280a0825f27bd83686c39#npm:4.0.1"],\
+            ["@graphql-codegen/typescript-operations", "virtual:2f3d4db4da433dd71257f89c090b476cfba027be2252cd9183125fa535b6adcc52a109f820daf622e6b05a0472cc78c358983dc8344280a0825f27bd83686c39#npm:4.0.1"],\
             ["@graphql-codegen/typescript-resolvers", "virtual:2f3d4db4da433dd71257f89c090b476cfba027be2252cd9183125fa535b6adcc52a109f820daf622e6b05a0472cc78c358983dc8344280a0825f27bd83686c39#npm:4.0.1"],\
             ["@grpc/grpc-js", "npm:1.9.0"],\
             ["@jangjunha/ftgo-proto", "npm:0.1.0::__archiveUrl=https%3A%2F%2Fasia-northeast3-npm.pkg.dev%2Fftgo-jangjunha%2Fnpm-public%2F%40jangjunha%2Fftgo-proto%2F-%2F%40jangjunha%2Fftgo-proto-0.1.0.tgz"],\
@@ -1654,6 +1655,33 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graphql-codegen/typescript", "virtual:2f3d4db4da433dd71257f89c090b476cfba027be2252cd9183125fa535b6adcc52a109f820daf622e6b05a0472cc78c358983dc8344280a0825f27bd83686c39#npm:4.0.1"],\
             ["@graphql-codegen/plugin-helpers", "virtual:626da08547a2b176f858aabbbebe11aec6c3301df38c24c4b25ec941437e9ecc6e16d86d29986413e8d6593c48ed77f845cca50e68b29d276b6aed15e1601252#npm:5.0.1"],\
             ["@graphql-codegen/schema-ast", "virtual:c2b07984fcd16d3187c14fbfd909ddaa9edcefc9917e863dfb66588292f8059bbeedaa89ea6b54f63a8b9cf0ce7db3394d65e0cf736a826780f9cfe17e3b58a9#npm:4.0.0"],\
+            ["@graphql-codegen/visitor-plugin-common", "virtual:bb4ee9d11b49ddde5977e956dce6080a47363dcb0d3fb609d257705246bff5fc37fc52b6c8d6437088ec1812cc7e01814383aa7956fe1b2ce530a7e46798f436#npm:4.0.1"],\
+            ["@types/graphql", null],\
+            ["auto-bind", "npm:4.0.0"],\
+            ["graphql", "npm:16.7.1"],\
+            ["tslib", "npm:2.5.3"]\
+          ],\
+          "packagePeers": [\
+            "@types/graphql",\
+            "graphql"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@graphql-codegen/typescript-operations", [\
+        ["npm:4.0.1", {\
+          "packageLocation": "./.yarn/cache/@graphql-codegen-typescript-operations-npm-4.0.1-04a13ac10a-82cd58ceb7.zip/node_modules/@graphql-codegen/typescript-operations/",\
+          "packageDependencies": [\
+            ["@graphql-codegen/typescript-operations", "npm:4.0.1"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:2f3d4db4da433dd71257f89c090b476cfba027be2252cd9183125fa535b6adcc52a109f820daf622e6b05a0472cc78c358983dc8344280a0825f27bd83686c39#npm:4.0.1", {\
+          "packageLocation": "./.yarn/__virtual__/@graphql-codegen-typescript-operations-virtual-c330067812/0/cache/@graphql-codegen-typescript-operations-npm-4.0.1-04a13ac10a-82cd58ceb7.zip/node_modules/@graphql-codegen/typescript-operations/",\
+          "packageDependencies": [\
+            ["@graphql-codegen/typescript-operations", "virtual:2f3d4db4da433dd71257f89c090b476cfba027be2252cd9183125fa535b6adcc52a109f820daf622e6b05a0472cc78c358983dc8344280a0825f27bd83686c39#npm:4.0.1"],\
+            ["@graphql-codegen/plugin-helpers", "virtual:626da08547a2b176f858aabbbebe11aec6c3301df38c24c4b25ec941437e9ecc6e16d86d29986413e8d6593c48ed77f845cca50e68b29d276b6aed15e1601252#npm:5.0.1"],\
+            ["@graphql-codegen/typescript", "virtual:2f3d4db4da433dd71257f89c090b476cfba027be2252cd9183125fa535b6adcc52a109f820daf622e6b05a0472cc78c358983dc8344280a0825f27bd83686c39#npm:4.0.1"],\
             ["@graphql-codegen/visitor-plugin-common", "virtual:bb4ee9d11b49ddde5977e956dce6080a47363dcb0d3fb609d257705246bff5fc37fc52b6c8d6437088ec1812cc7e01814383aa7956fe1b2ce530a7e46798f436#npm:4.0.1"],\
             ["@types/graphql", null],\
             ["auto-bind", "npm:4.0.0"],\
@@ -4731,6 +4759,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graphql-codegen/cli", "virtual:2f3d4db4da433dd71257f89c090b476cfba027be2252cd9183125fa535b6adcc52a109f820daf622e6b05a0472cc78c358983dc8344280a0825f27bd83686c39#npm:5.0.0"],\
             ["@graphql-codegen/introspection", "virtual:2f3d4db4da433dd71257f89c090b476cfba027be2252cd9183125fa535b6adcc52a109f820daf622e6b05a0472cc78c358983dc8344280a0825f27bd83686c39#npm:4.0.0"],\
             ["@graphql-codegen/typescript", "virtual:2f3d4db4da433dd71257f89c090b476cfba027be2252cd9183125fa535b6adcc52a109f820daf622e6b05a0472cc78c358983dc8344280a0825f27bd83686c39#npm:4.0.1"],\
+            ["@graphql-codegen/typescript-operations", "virtual:2f3d4db4da433dd71257f89c090b476cfba027be2252cd9183125fa535b6adcc52a109f820daf622e6b05a0472cc78c358983dc8344280a0825f27bd83686c39#npm:4.0.1"],\
             ["@graphql-codegen/typescript-resolvers", "virtual:2f3d4db4da433dd71257f89c090b476cfba027be2252cd9183125fa535b6adcc52a109f820daf622e6b05a0472cc78c358983dc8344280a0825f27bd83686c39#npm:4.0.1"],\
             ["@grpc/grpc-js", "npm:1.9.0"],\
             ["@jangjunha/ftgo-proto", "npm:0.1.0::__archiveUrl=https%3A%2F%2Fasia-northeast3-npm.pkg.dev%2Fftgo-jangjunha%2Fnpm-public%2F%40jangjunha%2Fftgo-proto%2F-%2F%40jangjunha%2Fftgo-proto-0.1.0.tgz"],\
