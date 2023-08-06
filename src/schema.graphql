@@ -4,6 +4,10 @@ type Query {
   restaurant(id: ID!): Restaurant!
 }
 
+type Mutation {
+  createConsumer(c: ConsumerInfo!): Consumer!
+}
+
 type Money {
   amount: String!
 }
@@ -51,6 +55,10 @@ type DeliveryInfo {
   status: DeliveryStatus!
   estimatedDeliveryTime: String
   assignedCourier: String
+}
+
+input ConsumerInfo {
+  name: String!
 }
 
 enum DeliveryStatus {

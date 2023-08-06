@@ -4,6 +4,7 @@ import { OrderHistoryService } from "../proxies/order-history";
 import { ConsumerService } from "../proxies/consumer";
 import { RestaurantService } from "../proxies/restaurant";
 import Query from "./queries";
+import Mutation from "./mutations";
 import Consumer from "./consumer";
 import Order from "./order";
 
@@ -25,6 +26,7 @@ export const accountingService = new AccountingService(
 
 export const resolver: Resolvers = {
   Query,
+  Mutation,
   Consumer,
   Order,
 };
