@@ -1,3 +1,6 @@
+src/generated/
+dist/
+
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
