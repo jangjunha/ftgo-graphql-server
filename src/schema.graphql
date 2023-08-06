@@ -11,6 +11,7 @@ type Money {
 type Consumer {
   id: ID!
   name: String!
+  account: Account!
   orders: [Order!]!
 }
 
@@ -39,6 +40,11 @@ type MenuItem {
   id: ID!
   name: String!
   price: Money!
+}
+
+type Account {
+  id: ID!
+  balance: Money!
 }
 
 type DeliveryInfo {

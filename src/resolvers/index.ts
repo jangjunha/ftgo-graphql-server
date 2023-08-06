@@ -1,4 +1,5 @@
 import { Resolvers } from "../generated/graphql";
+import { AccountingService } from "../proxies/accounting";
 import { OrderHistoryService } from "../proxies/order-history";
 import { ConsumerService } from "../proxies/consumer";
 import { RestaurantService } from "../proxies/restaurant";
@@ -16,6 +17,10 @@ export const consumerService = new ConsumerService(
 
 export const restaurantService = new RestaurantService(
   process.env.RESTAURANT_SERVICE_URL!
+);
+
+export const accountingService = new AccountingService(
+  process.env.ACCOUNTING_SERVICE_URL!
 );
 
 export const resolver: Resolvers = {
