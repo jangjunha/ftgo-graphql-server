@@ -35,6 +35,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["body-parser", "npm:1.20.2"],\
             ["concurrently", "npm:8.2.0"],\
             ["cors", "npm:2.8.5"],\
+            ["dotenv", "npm:16.3.1"],\
             ["express", "npm:4.18.2"],\
             ["nodemon", "npm:3.0.1"],\
             ["prettier", "npm:2.8.8"],\
@@ -775,6 +776,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["dotenv", [\
+        ["npm:16.3.1", {\
+          "packageLocation": "./.yarn/cache/dotenv-npm-16.3.1-e6d380a398-15d75e7279.zip/node_modules/dotenv/",\
+          "packageDependencies": [\
+            ["dotenv", "npm:16.3.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["eastasianwidth", [\
         ["npm:0.2.0", {\
           "packageLocation": "./.yarn/cache/eastasianwidth-npm-0.2.0-c37eb16bd1-7d00d7cd8e.zip/node_modules/eastasianwidth/",\
@@ -1026,6 +1036,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["body-parser", "npm:1.20.2"],\
             ["concurrently", "npm:8.2.0"],\
             ["cors", "npm:2.8.5"],\
+            ["dotenv", "npm:16.3.1"],\
             ["express", "npm:4.18.2"],\
             ["nodemon", "npm:3.0.1"],\
             ["prettier", "npm:2.8.8"],\
