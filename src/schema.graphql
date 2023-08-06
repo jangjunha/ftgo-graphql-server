@@ -6,6 +6,9 @@ type Query {
 
 type Mutation {
   createConsumer(c: ConsumerInfo!): Consumer!
+
+  depositAccount(accountId: ID!, amount: MoneyInput!): Account!
+  withdrawAccount(accountId: ID!, amount: MoneyInput!): Account!
 }
 
 type Money {

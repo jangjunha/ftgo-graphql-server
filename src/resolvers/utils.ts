@@ -6,7 +6,10 @@ import {
   Order,
   Restaurant,
 } from "../generated/graphql";
-import { AccountDetails as AccountInput } from "../proxies/accounting";
+import {
+  AccountDetails as AccountDetailsInput,
+  Account as AccountInput,
+} from "../proxies/accounting";
 import { Consumer as ConsumerInput } from "../proxies/consumer";
 import { Order as OrderHistoryInput } from "../proxies/order-history";
 import { Restaurant as RestaurantInput } from "../proxies/restaurant";
@@ -42,6 +45,11 @@ export const convertRestaurant = (input: RestaurantInput): Restaurant => ({
 });
 
 export const convertAccount = (input: AccountInput): Account => ({
+  id: input.id,
+  balance: convertMoney(input.balance),
+});
+
+export const convertAccountDetails = (input: AccountDetailsInput): Account => ({
   id: input.id,
   balance: convertMoney(input.amount),
 });
