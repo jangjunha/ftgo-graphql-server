@@ -1,8 +1,25 @@
 type Query {
   consumer(id: ID!): Consumer!
+  restaurant(id: ID!): Restaurant!
+}
+
+type Money {
+  amount: String!
 }
 
 type Consumer {
   id: ID!
   name: String!
+}
+
+type Restaurant {
+  id: ID!
+  name: String!
+  menuItems: [MenuItem!]!
+}
+
+type MenuItem {
+  id: ID!
+  name: String!
+  price: Money!
 }
