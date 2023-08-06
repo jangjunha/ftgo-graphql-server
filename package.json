@@ -3,10 +3,16 @@
   "packageManager": "yarn@3.6.1",
   "scripts": {
     "compile": "tsc",
-    "start": "yarn compile && node ./dist/index.js",
-    "watch": "concurrently --names \"TS,Nodemon\" -c \"bgBlue,bgMagenta\" \"tsc -w\" \"nodemon ./dist/index.js\""
+    "start": "yarn compile && node ./dist/src/index.js",
+    "watch": "concurrently --names \"CodeGen,TS,Nodemon\" -c \"bgYellow,bgBlue,bgMagenta\" \"gql-gen --config codegen.ts --watch 'src/**/graphql.schema'\" \"tsc -w\" \"nodemon ./dist/src/index.js\"",
+    "codegen": "gql-gen --config codegen.ts"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/introspection": "^4.0.0",
+    "@graphql-codegen/typescript": "^4.0.1",
+    "@graphql-codegen/typescript-resolvers": "^4.0.1",
+    "@parcel/watcher": "^2.2.0",
     "@types/body-parser": "^1",
     "@types/cors": "^2",
     "@types/express": "^4",

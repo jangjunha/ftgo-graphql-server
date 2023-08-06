@@ -1,4 +1,5 @@
 .env
+graphql.schema.json
 src/generated/
 dist/
 

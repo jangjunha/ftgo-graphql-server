@@ -8,12 +8,7 @@ import express from "express";
 import http from "http";
 
 import { resolver } from "./resolvers";
-
-const typeDefs = `#graphql
-  type Query {
-    hello: String
-  }
-`;
+import { typeDefs } from "./schema";
 
 async function run() {
   const PORT = 4000;
@@ -29,7 +24,6 @@ async function run() {
   await server.start();
 
   app.use(cors(), bodyParser.json(), expressMiddleware(server));
-
 
   await new Promise<void>((resolve) =>
     httpServer.listen({ port: PORT }, resolve)

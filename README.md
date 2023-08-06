@@ -8,6 +8,12 @@ $ cp .env.dist .env
 
 and edit values.
 
+## Generate GraphQL Codes
+
+```bash
+$ yarn codegen
+```
+
 ## Run Server
 
 ```bash
