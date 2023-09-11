@@ -2,20 +2,13 @@ import { PactV3, MatchersV3 } from "@pact-foundation/pact";
 import { expect } from "chai";
 import path from "path";
 
+const { eachLike, number, string, uuid } = MatchersV3;
+
 const pact = new PactV3({
   dir: path.resolve(process.cwd(), "pacts"),
   consumer: "ftgo-graphql-server",
   provider: "ftgo-restaurant-service",
 });
-
-const EXPECTED = {
-  id: "97e3c4c2-f336-4435-9314-ad1a633495df",
-  name: "A Cafe",
-  menuItems: [
-    { id: "americano", name: "Americano", price: { amount: "2500" } },
-    { id: "latte", name: "Cafe Latte", price: { amount: "3500" } },
-  ],
-};
 
 describe("A Cafe", () => {
   it("returns an HTTP 200 and restaurant information", async () => {
@@ -31,7 +24,15 @@ describe("A Cafe", () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: MatchersV3.like(EXPECTED),
+        body: {
+          id: uuid("97e3c4c2-f336-4435-9314-ad1a633495df"),
+          name: string("A Cafe"),
+          menuItems: eachLike({
+            id: string("americano"),
+            name: string("Americano"),
+            price: { amount: number(2500) },
+          }),
+        },
       })
       .executeTest(async (mockserver) => {
         const response = await fetch(
@@ -41,7 +42,13 @@ describe("A Cafe", () => {
           )
         );
         const result = await response.json();
-        expect(result).to.deep.eq(EXPECTED);
+        expect(result).to.deep.eq({
+          id: "97e3c4c2-f336-4435-9314-ad1a633495df",
+          name: "A Cafe",
+          menuItems: [
+            { id: "americano", name: "Americano", price: { amount: 2500 } },
+          ],
+        });
       });
   });
 });
