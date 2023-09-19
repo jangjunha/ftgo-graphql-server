@@ -5,7 +5,7 @@ import {
 } from "@jangjunha/ftgo-proto/lib/orders_pb";
 import { Timestamp } from "google-protobuf/google/protobuf/timestamp_pb";
 
-import { accountingService, consumerService } from ".";
+import { accountingService, consumerService, restaurantService } from ".";
 import {
   Account,
   Consumer,
@@ -18,6 +18,11 @@ import { convertOrder } from "./utils";
 import { orderService } from "../proxies/order";
 
 const resolver: MutationResolvers = {
+  async createRestaurant(_, { r }): Promise<string> {
+    const id = await restaurantService.createRestaurant(r);
+    return id;
+  },
+
   async createConsumer(_, { c: consumerInfo }): Promise<Consumer> {
     const data = await consumerService.createConsumer(consumerInfo.name);
     return convertConsumer(data);

@@ -8,6 +8,8 @@ type Query {
 }
 
 type Mutation {
+  createRestaurant(r: CreateRestaurantInput!): ID!
+
   createConsumer(c: ConsumerInfo!): Consumer!
 
   createOrder(o: CreateOrderInput!): Order!
@@ -47,6 +49,17 @@ type OrderLineItem {
   menuItemId: String!
   name: String!
   price: Money!
+}
+
+input CreateRestaurantInput {
+  name: String!
+  menuItems: [MenuItemInput!]!
+}
+
+input MenuItemInput {
+  id: ID!
+  name: String!
+  price: MoneyInput!
 }
 
 type Restaurant {

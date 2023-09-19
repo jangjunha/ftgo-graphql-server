@@ -28,4 +28,9 @@ export class RestaurantService {
     const res = await this.client.get(path.join("./restaurants/", id, "./"));
     return res.data as Restaurant;
   }
+
+  async createRestaurant(restaurant: Omit<Restaurant, "id">): Promise<string> {
+    const res = await this.client.post(path.join("./restaurants/"), restaurant);
+    return res.data.id;
+  }
 }
