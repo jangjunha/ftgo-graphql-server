@@ -1,5 +1,7 @@
 import axios, { AxiosInstance } from "axios";
+import { AuthResult } from "express-oauth2-jwt-bearer";
 import path from "path";
+import { generateAuthHeaders } from "../auth";
 
 export interface Consumer {
   id: string;
@@ -9,9 +11,10 @@ export interface Consumer {
 export class ConsumerService {
   private client: AxiosInstance;
 
-  constructor(baseURL: string) {
+  constructor(baseURL: string, auth?: AuthResult) {
     this.client = axios.create({
       baseURL,
+      headers: generateAuthHeaders(auth),
     });
   }
 
@@ -21,7 +24,15 @@ export class ConsumerService {
   }
 
   async createConsumer(name: string): Promise<Consumer> {
-    const res = await this.client.post("./consumers/", { name });
+    const res = await this.client.post(
+      "./consumers/",
+      { name },
+      {
+        headers: {
+          "x-ftgo-authenticated-client-id": "ftgo-graphql-server",
+        },
+      }
+    );
     return res.data as Consumer;
   }
 }

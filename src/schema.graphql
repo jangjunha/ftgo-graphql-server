@@ -1,4 +1,5 @@
 scalar DateTimeISO
+scalar EmailAddress
 
 type Query {
   order(id: ID!): Order!
@@ -10,7 +11,7 @@ type Query {
 type Mutation {
   createRestaurant(r: CreateRestaurantInput!): ID!
 
-  createConsumer(c: ConsumerInfo!): Consumer!
+  createConsumer(c: ConsumerInput!): Consumer!
 
   createOrder(o: CreateOrderInput!): Order!
 
@@ -54,6 +55,12 @@ type OrderLineItem {
 input CreateRestaurantInput {
   name: String!
   menuItems: [MenuItemInput!]!
+  manager: ManagerInput!
+}
+
+input ManagerInput {
+  email: EmailAddress!
+  password: String!
 }
 
 input MenuItemInput {
@@ -106,8 +113,9 @@ type DeliveryInfo {
   assignedCourier: String
 }
 
-input ConsumerInfo {
-  name: String!
+input ConsumerInput {
+  email: String!
+  password: String!
 }
 
 input CreateOrderInput {

@@ -2444,6 +2444,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"auth0@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "auth0@npm:4.0.1"
+  dependencies:
+    jose: ^4.13.2
+    uuid: ^9.0.0
+  checksum: 7dd0445505f7d2b890f2baffd1f38940dc65a3be2f307af327008d67711bc8142c732b68e47cb40cf4e03b8b453a7d3100e16521bcd82c5ceca5972f01ba2d27
+  languageName: node
+  linkType: hard
+
 "auto-bind@npm:~4.0.0":
   version: 4.0.0
   resolution: "auto-bind@npm:4.0.0"
@@ -3577,6 +3587,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"express-oauth2-jwt-bearer@npm:^1.5.0":
+  version: 1.5.0
+  resolution: "express-oauth2-jwt-bearer@npm:1.5.0"
+  dependencies:
+    jose: ^4.13.1
+  checksum: 642650d56b2b59a3df001fa09682d78432e4b36aa25a614a220ef1ac9aad3f2a02ef23bc53ae5606c01d05a667866bd6c5bacb0bd4489d3e1d9905a2df23a0c2
+  languageName: node
+  linkType: hard
+
 "express@npm:^4.17.1, express@npm:^4.18.1, express@npm:^4.18.2":
   version: 4.18.2
   resolution: "express@npm:4.18.2"
@@ -3925,6 +3944,7 @@ __metadata:
     "@types/google-protobuf": ^3
     "@types/mocha": ^10
     "@types/node": ^20.4.8
+    auth0: ^4.0.1
     axios: ^1.4.0
     body-parser: ^1.20.2
     chai: ^4.3.8
@@ -3932,6 +3952,7 @@ __metadata:
     cors: ^2.8.5
     dotenv: ^16.3.1
     express: ^4.18.2
+    express-oauth2-jwt-bearer: ^1.5.0
     google-protobuf: ^3.21.2
     graphql: ^16.7.1
     graphql-scalars: ^1.22.2
@@ -4660,6 +4681,13 @@ __metadata:
   version: 4.14.4
   resolution: "jose@npm:4.14.4"
   checksum: 2d820a91a8fd97c05d8bc8eedc373b944a0cd7f5fe41063086da233d0473c73fb523912a9f026ea870782bd221f4a515f441a2d3af4de48c6f2c76dac5082377
+  languageName: node
+  linkType: hard
+
+"jose@npm:^4.13.1, jose@npm:^4.13.2":
+  version: 4.14.6
+  resolution: "jose@npm:4.14.6"
+  checksum: eae81a234e7bf1446b1bd80722b3462b014e3835b155c3a7799c1c5043163a53a0dc28d347004151b031e6b7b863403aabf8814d9cc217ce21f8c2f3ebd4b335
   languageName: node
   linkType: hard
 

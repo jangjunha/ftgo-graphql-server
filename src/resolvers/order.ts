@@ -1,12 +1,8 @@
-import { status } from "@grpc/grpc-js";
-import { GetTicketPayload } from "@jangjunha/ftgo-proto/lib/kitchens_pb";
-import { consumerService, restaurantService } from "./";
 import { OrderResolvers } from "../generated/graphql";
 import { convertConsumer, convertRestaurant, convertTicket } from "./utils";
-import { kitchenService } from "../proxies/kitchen";
 
 const resolver: OrderResolvers = {
-  async restaurant({ restaurant: r }) {
+  async restaurant({ restaurant: r }, _, { restaurantService }) {
     if (r == null) {
       throw Error("Cannot find restaurant id");
     }
@@ -14,7 +10,7 @@ const resolver: OrderResolvers = {
     return convertRestaurant(restaurant);
   },
 
-  async consumer({ consumer: c }) {
+  async consumer({ consumer: c }, _, { consumerService }) {
     if (c == null) {
       throw Error("Cannot find consumer id");
     }
@@ -22,23 +18,9 @@ const resolver: OrderResolvers = {
     return convertConsumer(consumer);
   },
 
-  async ticket({ id: orderId }) {
-    const payload = new GetTicketPayload();
-    payload.setTicketid(orderId);
-    return new Promise((resolve) =>
-      kitchenService.getTicket(payload, (err, value) => {
-        if (err != null) {
-          if (err.code == status.NOT_FOUND) {
-            return null;
-          }
-          throw err;
-        }
-        if (value == null) {
-          throw new Error(`Cannot find ticket ${orderId}`);
-        }
-        resolve(convertTicket(value));
-      })
-    );
+  async ticket({ id: orderId }, _, { kitchenService }) {
+    const ticket = await kitchenService.getTicket(orderId);
+    return convertTicket(ticket);
   },
 };
 export default resolver;

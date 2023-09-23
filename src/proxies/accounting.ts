@@ -1,6 +1,8 @@
 import axios, { AxiosInstance } from "axios";
 import path from "path";
 import { Money } from "./money";
+import { AuthResult } from "express-oauth2-jwt-bearer";
+import { generateAuthHeaders } from "../auth";
 
 export interface Account {
   id: string;
@@ -15,9 +17,10 @@ export interface AccountDetails {
 export class AccountingService {
   private client: AxiosInstance;
 
-  constructor(baseURL: string) {
+  constructor(baseURL: string, auth?: AuthResult) {
     this.client = axios.create({
       baseURL,
+      headers: generateAuthHeaders(auth),
     });
   }
 

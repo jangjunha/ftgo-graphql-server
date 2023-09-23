@@ -7,11 +7,13 @@ const config: CodegenConfig = {
     "src/generated/graphql.ts": {
       plugins: ["typescript", "typescript-resolvers"],
       config: {
+        contextType: "..#AppContext",
         arrayInputCorrection: false,
         useIndexSignature: true,
         emitLegacyCommonJSImports: false,
         scalars: {
           DateTimeISO: "string",
+          EmailAddress: "string",
         },
       },
     },
