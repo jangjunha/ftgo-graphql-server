@@ -1,0 +1,13 @@
+pacts
+.env
+graphql.schema.json
+src/generated/
+dist/
+
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
