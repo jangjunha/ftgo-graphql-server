@@ -22,6 +22,11 @@ const queries: QueryResolvers = {
     return convertRestaurant(restaurant);
   },
 
+  async restaurants(_, {}, { restaurantService }) {
+    const restaurants = await restaurantService.listRestaurants();
+    return restaurants.map(convertRestaurant);
+  },
+
   async ticket(_, { id }, { kitchenService }) {
     const ticket = await kitchenService.getTicket(id);
     return convertTicket(ticket);

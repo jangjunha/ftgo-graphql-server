@@ -27,6 +27,11 @@ export class RestaurantService {
     });
   }
 
+  async listRestaurants(): Promise<Restaurant[]> {
+    const res = await this.client.get("./restaurants/");
+    return res.data as Restaurant[];
+  }
+
   async findRestaurant(id: string): Promise<Restaurant> {
     const res = await this.client.get(path.join("./restaurants/", id, "./"));
     return res.data as Restaurant;

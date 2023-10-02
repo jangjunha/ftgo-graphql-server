@@ -5,6 +5,7 @@ type Query {
   order(id: ID!): Order!
   consumer(id: ID!): Consumer!
   restaurant(id: ID!): Restaurant!
+  restaurants: [Restaurant!]!
   ticket(id: ID!): Ticket!
 }
 
