@@ -39,6 +39,7 @@ type Consumer {
 
 type Order {
   id: ID!
+  state: OrderState!
   lineItems: [OrderLineItem!]!
   consumer: Consumer
   restaurant: Restaurant
@@ -136,6 +137,15 @@ enum DeliveryStatus {
   READY_FOR_PICKUP
   PICKED_UP
   DELIVERED
+}
+
+enum OrderState {
+  APPROVAL_PENDING
+  APPROVED
+  REJECTED
+  CANCEL_PENDING
+  CANCELLED
+  REVISION_PENDING
 }
 
 enum TicketState {

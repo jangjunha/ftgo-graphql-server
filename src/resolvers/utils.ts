@@ -4,6 +4,7 @@ import {
   DeliveryStatus,
   Money,
   Order,
+  OrderState,
   Restaurant,
   Ticket,
   TicketLineItem,
@@ -14,7 +15,10 @@ import {
   Account as AccountInput,
 } from "../proxies/accounting";
 import { Consumer as ConsumerInput } from "../proxies/consumer";
-import { Order as OrderHistoryInput } from "../proxies/order-history";
+import {
+  Order as OrderHistoryInput,
+  OrderState as OrderHistoryState,
+} from "../proxies/order-history";
 import { Restaurant as RestaurantInput } from "../proxies/restaurant";
 import { Money as MoneyInput } from "../proxies/money";
 import {
@@ -22,7 +26,10 @@ import {
   TicketLineItem as TicketLineItemInput,
   TicketStateMap,
 } from "@jangjunha/ftgo-proto/lib/tickets_pb";
-import { Order as OrderInput } from "@jangjunha/ftgo-proto/lib/orders_pb";
+import {
+  Order as OrderInput,
+  OrderStateMap,
+} from "@jangjunha/ftgo-proto/lib/orders_pb";
 import { Money as MoneyPb } from "@jangjunha/ftgo-proto/lib/money_pb";
 
 const emptyAccount = (id: string): Account => ({ id, balance: { amount: "" } });
@@ -46,6 +53,7 @@ export const convertConsumer = (input: ConsumerInput): Consumer => ({
 
 export const convertOrder = (input: OrderInput): Order => ({
   id: input.getId(),
+  state: convertOrderState(input.getState()),
   lineItems: input.getLineitemsList().map((li) => ({
     quantity: li.getQuantity(),
     menuItemId: li.getMenuitemid(),
@@ -59,6 +67,7 @@ export const convertOrder = (input: OrderInput): Order => ({
 
 export const convertOrderHistory = (input: OrderHistoryInput): Order => ({
   id: input.orderId,
+  state: convertOrderHistoryState(input.status),
   restaurant: {
     id: input.restaurantId,
     name: input.restaurantName,
@@ -95,6 +104,45 @@ export const convertTicket = (input: TicketInput): Ticket => ({
   pickedUpTime: input.getPickeduptime()?.toDate().toISOString(),
   readyForPickupTime: input.getReadyby()?.toDate().toISOString(),
 });
+
+const convertOrderHistoryState = (input: OrderHistoryState): OrderState => {
+  switch (input) {
+    case "APPROVAL_PENDING":
+      return OrderState.ApprovalPending;
+    case "APPROVED":
+      return OrderState.Approved;
+    case "REJECTED":
+      return OrderState.Rejected;
+    case "CANCEL_PENDING":
+      return OrderState.CancelPending;
+    case "CANCELLED":
+      return OrderState.Cancelled;
+    case "REVISION_PENDING":
+      return OrderState.RevisionPending;
+  }
+};
+
+const convertOrderState = (
+  input: OrderStateMap[keyof OrderStateMap]
+): OrderState => {
+  switch (input) {
+    case 0:
+      return OrderState.ApprovalPending;
+    case 1:
+      return OrderState.Approved;
+    case 2:
+      return OrderState.Rejected;
+    case 3:
+      return OrderState.CancelPending;
+    case 4:
+      return OrderState.Cancelled;
+    case 5:
+      return OrderState.RevisionPending;
+    default:
+      const exhaustiveCheck: never = input;
+      throw new Error(`Unhandled order state case: ${exhaustiveCheck}`);
+  }
+};
 
 const convertTicketState = (
   input: TicketStateMap[keyof TicketStateMap]
