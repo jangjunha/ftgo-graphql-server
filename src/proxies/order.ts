@@ -41,16 +41,20 @@ export class OrderService {
     );
     payload.setDeliveryaddress(deliveryAddress);
     return new Promise((resolve) => {
-      this.stub.createOrder(payload, (err, order) => {
-        if (err != null) {
-          console.error(err);
-          throw err;
+      this.stub.createOrder(
+        payload,
+        { credentials: this.credentials },
+        (err, order) => {
+          if (err != null) {
+            console.error(err);
+            throw err;
+          }
+          if (order == null) {
+            throw new Error("Unexpected exception: order is null");
+          }
+          resolve(order);
         }
-        if (order == null) {
-          throw new Error("Unexpected exception: order is null");
-        }
-        resolve(order);
-      });
+      );
     });
   }
 }
