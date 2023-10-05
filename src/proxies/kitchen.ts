@@ -48,12 +48,16 @@ export class KitchenService {
     payload.setTicketid(ticketId);
     payload.setReadyby(Timestamp.fromDate(new Date(readyBy)));
     return new Promise((resolve) => {
-      this.client.acceptTicket(payload, (err, _) => {
-        if (err != null) {
-          throw err;
+      this.client.acceptTicket(
+        payload,
+        { credentials: this.credentials },
+        (err, _) => {
+          if (err != null) {
+            throw err;
+          }
+          resolve(ticketId);
         }
-        resolve(ticketId);
-      });
+      );
     });
   }
 }
