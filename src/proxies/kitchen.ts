@@ -4,8 +4,10 @@ import { KitchenServiceClient } from "@jangjunha/ftgo-proto/lib/kitchens_grpc_pb
 import {
   AcceptTicketPayload,
   GetTicketPayload,
+  ListTicketPayload,
+  TicketEdge,
+  Ticket,
 } from "@jangjunha/ftgo-proto/lib/kitchens_pb";
-import { Ticket } from "@jangjunha/ftgo-proto/lib/tickets_pb";
 import { generateGrpcCredentials } from "../auth";
 import { AuthResult } from "express-oauth2-jwt-bearer";
 import { Timestamp } from "google-protobuf/google/protobuf/timestamp_pb";
@@ -20,6 +22,45 @@ export class KitchenService {
       ChannelCredentials.createInsecure()
     );
     this.credentials = generateGrpcCredentials(auth);
+  }
+
+  async listTicket(
+    restaurantId: string,
+    after: string | null,
+    first: number | null,
+    before: string | null,
+    last: number | null
+  ): Promise<TicketEdge[]> {
+    const payload = new ListTicketPayload();
+    payload.setRestaurantid(restaurantId);
+    if (after != null) {
+      payload.setAfter(after);
+    }
+    if (first != null) {
+      payload.setFirst(first);
+    }
+    if (before != null) {
+      payload.setBefore(before);
+    }
+    if (last != null) {
+      payload.setLast(last);
+    }
+    return new Promise((resolve, reject) =>
+      this.client.listTickets(
+        payload,
+        { credentials: this.credentials },
+        (err, value) => {
+          if (err != null) {
+            reject(err);
+            return;
+          }
+          if (value == null) {
+            throw new Error("Unexpected null response");
+          }
+          resolve(value.getEdgesList());
+        }
+      )
+    );
   }
 
   async getTicket(id: string): Promise<Ticket> {

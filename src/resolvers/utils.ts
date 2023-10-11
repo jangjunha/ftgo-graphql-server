@@ -7,6 +7,7 @@ import {
   OrderState,
   Restaurant,
   Ticket,
+  TicketEdge,
   TicketLineItem,
   TicketState,
 } from "../generated/graphql";
@@ -22,10 +23,11 @@ import {
 import { Restaurant as RestaurantInput } from "../proxies/restaurant";
 import { Money as MoneyInput } from "../proxies/money";
 import {
+  TicketEdge as TicketEdgeInput,
   Ticket as TicketInput,
   TicketLineItem as TicketLineItemInput,
   TicketStateMap,
-} from "@jangjunha/ftgo-proto/lib/tickets_pb";
+} from "@jangjunha/ftgo-proto/lib/kitchens_pb";
 import {
   Order as OrderInput,
   OrderStateMap,
@@ -43,6 +45,7 @@ const emptyRestaurant = (id: string): Restaurant => ({
   id,
   name: "",
   menuItems: [],
+  tickets: { edges: [] },
 });
 
 export const convertConsumer = (input: ConsumerInput): Consumer => ({
@@ -72,6 +75,7 @@ export const convertOrderHistory = (input: OrderHistoryInput): Order => ({
     id: input.restaurantId,
     name: input.restaurantName,
     menuItems: [],
+    tickets: { edges: [] },
   },
   consumer: emptyConsumer(input.consumerId),
   deliveryInfo: { status: DeliveryStatus.Preparing }, // TODO:
@@ -79,6 +83,7 @@ export const convertOrderHistory = (input: OrderHistoryInput): Order => ({
 });
 
 export const convertRestaurant = (input: RestaurantInput): Restaurant => ({
+  tickets: { edges: [] },
   ...input,
 });
 
@@ -103,6 +108,11 @@ export const convertTicket = (input: TicketInput): Ticket => ({
   preparingTime: input.getPreparingtime()?.toDate().toISOString(),
   pickedUpTime: input.getPickeduptime()?.toDate().toISOString(),
   readyForPickupTime: input.getReadyby()?.toDate().toISOString(),
+});
+
+export const convertTicketEdge = (input: TicketEdgeInput): TicketEdge => ({
+  node: convertTicket(input.getNode()!),
+  cursor: input.getCursor(),
 });
 
 const convertOrderHistoryState = (input: OrderHistoryState): OrderState => {

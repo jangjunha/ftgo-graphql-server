@@ -5,6 +5,7 @@ import Mutation from "./mutations";
 import Consumer from "./consumer";
 import Order from "./order";
 import Ticket from "./ticket";
+import Restaurant from "./restaurant";
 
 export const resolver: Resolvers = {
   ...scalarResolvers,
@@ -13,4 +14,5 @@ export const resolver: Resolvers = {
   Consumer,
   Order,
   Ticket,
+  Restaurant,
 };

@@ -75,12 +75,23 @@ type Restaurant {
   id: ID!
   name: String!
   menuItems: [MenuItem!]!
+
+  tickets(after: String, first: Int, before: String, last: Int): TicketEdges!
 }
 
 type MenuItem {
   id: ID!
   name: String!
   price: Money!
+}
+
+type TicketEdges {
+  edges: [TicketEdge!]!
+}
+
+type TicketEdge {
+  node: Ticket!
+  cursor: String!
 }
 
 type Account {
