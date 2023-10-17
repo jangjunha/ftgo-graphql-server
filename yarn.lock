@@ -1515,12 +1515,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jangjunha/ftgo-proto@npm:^0.7.0":
-  version: 0.7.0
-  resolution: "@jangjunha/ftgo-proto@npm:0.7.0::__archiveUrl=https%3A%2F%2Fasia-northeast3-npm.pkg.dev%2Fftgo-jangjunha%2Fnpm-public%2F%40jangjunha%2Fftgo-proto%2F-%2F%40jangjunha%2Fftgo-proto-0.7.0.tgz"
+"@jangjunha/ftgo-proto@npm:^0.9.0":
+  version: 0.9.0
+  resolution: "@jangjunha/ftgo-proto@npm:0.9.0::__archiveUrl=https%3A%2F%2Fasia-northeast3-npm.pkg.dev%2Fftgo-jangjunha%2Fnpm-public%2F%40jangjunha%2Fftgo-proto%2F-%2F%40jangjunha%2Fftgo-proto-0.9.0.tgz"
   dependencies:
     google-protobuf: ^3.21.2
-  checksum: 7f23c6060ddbb86a5e455db8466e81bea35eb4126d7cc54c69184a44025009083d29357b1f9558190626b80ef3788e7cbec6e36114580191ef79330b3b0208e6
+  checksum: ac68cf408f30de0c775eda9e6802678712a1d71b22269346d88e9c04a2adf6b5ff9893ea9dea439debc0acb66d257a090eef0b32ceadb312207a1a8aeaa93183
   languageName: node
   linkType: hard
 
@@ -3934,7 +3934,7 @@ __metadata:
     "@graphql-codegen/typescript-operations": ^4.0.1
     "@graphql-codegen/typescript-resolvers": ^4.0.1
     "@grpc/grpc-js": ^1.9.0
-    "@jangjunha/ftgo-proto": ^0.7.0
+    "@jangjunha/ftgo-proto": ^0.9.0
     "@pact-foundation/pact": ^12.1.0
     "@parcel/watcher": ^2.2.0
     "@types/body-parser": ^1

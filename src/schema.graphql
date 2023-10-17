@@ -19,6 +19,8 @@ type Mutation {
   createOrder(o: CreateOrderInput!): Order!
 
   acceptTicket(ticketId: ID!, readyBy: DateTimeISO!): ID!
+  preparingTicket(ticketId: ID!): Ticket!
+  readyForPickupTicket(ticketId: ID!): Ticket!
 
   depositAccount(accountId: ID!, amount: MoneyInput!): Account!
   withdrawAccount(accountId: ID!, amount: MoneyInput!): Account!
@@ -137,8 +139,12 @@ type DeliveryInfo {
 type Delivery {
   id: ID!
   state: DeliveryState!
+  pickupTime: DateTimeISO
+  deliveryTime: DateTimeISO
   assignedCourier: Courier
   courierActions: [DeliveryActionInfo!]!
+
+  ticket: Ticket!
 }
 
 type Courier {

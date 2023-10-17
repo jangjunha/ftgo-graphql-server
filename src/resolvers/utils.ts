@@ -61,10 +61,17 @@ const emptyRestaurant = (id: string): Restaurant => ({
   menuItems: [],
   tickets: { edges: [] },
 });
+const emptyTicket = (id: string): Ticket => ({
+  id,
+  state: TicketState.CreatePending,
+  lineItems: [],
+  restaurant: emptyRestaurant(""),
+});
 const emptyDelivery = (id: string): Delivery => ({
   id,
   state: DeliveryState.Pending,
   courierActions: [],
+  ticket: emptyTicket(id),
 });
 const emptyCourier = (id: string): Courier => ({
   id,
@@ -251,10 +258,13 @@ export const convertDelivery = (input: DeliveryInput): Delivery => {
   return {
     id: deliveryInfo.getId(),
     state: convertDeliveryState(deliveryInfo.getState()),
+    pickupTime: deliveryInfo.getPickuptime()?.toDate().toISOString(),
+    deliveryTime: deliveryInfo.getDeliverytime()?.toDate().toISOString(),
     assignedCourier: assignedCourierId ? emptyCourier(assignedCourierId) : null,
     courierActions: input.getCourieractionsList().map((info) => ({
       type: convertDeliveryAction(info.getType()),
     })),
+    ticket: emptyTicket(deliveryInfo.getId()),
   };
 };
 

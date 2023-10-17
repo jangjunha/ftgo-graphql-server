@@ -4,9 +4,15 @@ import {
   Courier,
   MutationResolvers,
   Order,
+  Ticket,
 } from "../generated/graphql";
 import { auth } from "../proxies/auth";
-import { convertAccount, convertConsumer, convertCourier } from "./utils";
+import {
+  convertAccount,
+  convertConsumer,
+  convertCourier,
+  convertTicket,
+} from "./utils";
 import { convertOrder } from "./utils";
 
 const resolver: MutationResolvers = {
@@ -63,6 +69,20 @@ const resolver: MutationResolvers = {
     { kitchenService }
   ): Promise<string> {
     return kitchenService.acceptTicket(ticketId, readyBy);
+  },
+
+  async preparingTicket(_, { ticketId }, { kitchenService }): Promise<Ticket> {
+    const ticket = await kitchenService.preparingTicket(ticketId);
+    return convertTicket(ticket);
+  },
+
+  async readyForPickupTicket(
+    _,
+    { ticketId },
+    { kitchenService }
+  ): Promise<Ticket> {
+    const ticket = await kitchenService.readyForPickupTicket(ticketId);
+    return convertTicket(ticket);
   },
 
   async depositAccount(

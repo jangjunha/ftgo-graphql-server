@@ -7,6 +7,8 @@ import {
   ListTicketPayload,
   TicketEdge,
   Ticket,
+  PreparingTicketPayload,
+  ReadyForPickupTicketPayload,
 } from "@jangjunha/ftgo-proto/lib/kitchens_pb";
 import { generateGrpcCredentials } from "../auth";
 import { AuthResult } from "express-oauth2-jwt-bearer";
@@ -97,6 +99,48 @@ export class KitchenService {
             throw err;
           }
           resolve(ticketId);
+        }
+      );
+    });
+  }
+
+  async preparingTicket(ticketId: string): Promise<Ticket> {
+    const payload = new PreparingTicketPayload();
+    payload.setTicketid(ticketId);
+    return new Promise((resolve, reject) => {
+      this.client.preparingTicket(
+        payload,
+        { credentials: this.credentials },
+        (err, value) => {
+          if (err != null) {
+            reject(err);
+            return;
+          }
+          if (value == null) {
+            throw new Error(`Cannot find ticket`);
+          }
+          resolve(value);
+        }
+      );
+    });
+  }
+
+  async readyForPickupTicket(ticketId: string): Promise<Ticket> {
+    const payload = new ReadyForPickupTicketPayload();
+    payload.setTicketid(ticketId);
+    return new Promise((resolve, reject) => {
+      this.client.readyForPickupTicket(
+        payload,
+        { credentials: this.credentials },
+        (err, value) => {
+          if (err != null) {
+            reject(err);
+            return;
+          }
+          if (value == null) {
+            throw new Error(`Cannot find ticket`);
+          }
+          resolve(value);
         }
       );
     });

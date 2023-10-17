@@ -1,5 +1,5 @@
 import { DeliveryResolvers } from "../generated/graphql.js";
-import { convertCourier } from "./utils.js";
+import { convertCourier, convertTicket } from "./utils.js";
 
 const resolver: DeliveryResolvers = {
   async assignedCourier(delivery, {}, { deliveryService }) {
@@ -10,6 +10,11 @@ const resolver: DeliveryResolvers = {
       delivery.assignedCourier.id
     );
     return convertCourier(courier);
+  },
+
+  async ticket(delivery, {}, { kitchenService }) {
+    const ticket = await kitchenService.getTicket(delivery.id);
+    return convertTicket(ticket);
   },
 };
 export default resolver;

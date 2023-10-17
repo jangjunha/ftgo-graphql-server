@@ -8,6 +8,7 @@ import Ticket from "./ticket";
 import Restaurant from "./restaurant";
 import Delivery from "./delivery";
 import Courier from "./courier";
+import CourierAction from "./courierAction";
 
 export const resolver: Resolvers = {
   ...scalarResolvers,
@@ -19,4 +20,5 @@ export const resolver: Resolvers = {
   Restaurant,
   Delivery,
   Courier,
+  CourierAction,
 };
