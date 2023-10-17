@@ -7,6 +7,8 @@ type Query {
   restaurant(id: ID!): Restaurant!
   restaurants: [Restaurant!]!
   ticket(id: ID!): Ticket!
+  delivery(id: ID!): Delivery!
+  courier(id: ID!): Courier!
 }
 
 type Mutation {
@@ -20,6 +22,12 @@ type Mutation {
 
   depositAccount(accountId: ID!, amount: MoneyInput!): Account!
   withdrawAccount(accountId: ID!, amount: MoneyInput!): Account!
+
+  pickupDelivery(id: ID!): ID!
+  dropoffDelivery(id: ID!): ID!
+
+  createCourier(c: CourierInput!): ID!
+  updateCourierAvailability(id: ID!, available: Boolean!): Courier!
 }
 
 type Money {
@@ -126,6 +134,34 @@ type DeliveryInfo {
   assignedCourier: String
 }
 
+type Delivery {
+  id: ID!
+  state: DeliveryState!
+  assignedCourier: Courier
+  courierActions: [DeliveryActionInfo!]!
+}
+
+type Courier {
+  id: ID!
+  available: Boolean!
+  plan: CourierPlan!
+}
+
+type CourierPlan {
+  actions: [CourierAction!]!
+}
+
+type CourierAction {
+  type: DeliveryAction!
+  delivery: Delivery!
+  address: String!
+  time: DateTimeISO!
+}
+
+type DeliveryActionInfo {
+  type: DeliveryAction!
+}
+
 input ConsumerInput {
   email: String!
   password: String!
@@ -141,6 +177,11 @@ input CreateOrderInput {
 input MenuItemIdAndQuantity {
   menuItemId: String!
   quantity: Int!
+}
+
+input CourierInput {
+  email: String!
+  password: String!
 }
 
 enum DeliveryStatus {
@@ -169,4 +210,15 @@ enum TicketState {
   CANCEL_PENDING
   CANCELLED
   REVISION_PENDING
+}
+
+enum DeliveryState {
+  PENDING
+  SCHEDULED
+  CANCELLED
+}
+
+enum DeliveryAction {
+  PICKUP
+  DROPOFF
 }

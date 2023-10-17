@@ -1,6 +1,12 @@
 import {
   Account,
   Consumer,
+  Courier,
+  CourierAction,
+  CourierPlan,
+  Delivery,
+  DeliveryAction,
+  DeliveryState,
   DeliveryStatus,
   Money,
   Order,
@@ -32,6 +38,14 @@ import {
   Order as OrderInput,
   OrderStateMap,
 } from "@jangjunha/ftgo-proto/lib/orders_pb";
+import {
+  Courier as CourierInput,
+  CourierAction as CourierActionInput,
+  CourierPlan as CourierPlanInput,
+  DeliveryActionTypeMap,
+  DeliveryStatus as DeliveryInput,
+  DeliveryStateMap,
+} from "@jangjunha/ftgo-proto/lib/deliveries_pb";
 import { Money as MoneyPb } from "@jangjunha/ftgo-proto/lib/money_pb";
 
 const emptyAccount = (id: string): Account => ({ id, balance: { amount: "" } });
@@ -46,6 +60,19 @@ const emptyRestaurant = (id: string): Restaurant => ({
   name: "",
   menuItems: [],
   tickets: { edges: [] },
+});
+const emptyDelivery = (id: string): Delivery => ({
+  id,
+  state: DeliveryState.Pending,
+  courierActions: [],
+});
+const emptyCourier = (id: string): Courier => ({
+  id,
+  available: false,
+  plan: emptyCourierPlan(),
+});
+const emptyCourierPlan = (): CourierPlan => ({
+  actions: [],
 });
 
 export const convertConsumer = (input: ConsumerInput): Consumer => ({
@@ -182,10 +209,70 @@ const convertTicketState = (
   }
 };
 
+const convertDeliveryState = (
+  input: DeliveryStateMap[keyof DeliveryStateMap]
+): DeliveryState => {
+  switch (input) {
+    case 0:
+      return DeliveryState.Pending;
+    case 1:
+      return DeliveryState.Scheduled;
+    case 2:
+      return DeliveryState.Cancelled;
+    default:
+      const exhaustiveCheck: never = input;
+      throw new Error(`Unhandled ticket state case: ${exhaustiveCheck}`);
+  }
+};
+
+const convertDeliveryAction = (
+  input: DeliveryActionTypeMap[keyof DeliveryActionTypeMap]
+): DeliveryAction => {
+  switch (input) {
+    case 0:
+      return DeliveryAction.Pickup;
+    case 1:
+      return DeliveryAction.Dropoff;
+    default:
+      const exhaustiveCheck: never = input;
+      throw new Error(`Unhandled delivery action case: ${exhaustiveCheck}`);
+  }
+};
+
 const convertTicketLineItem = (input: TicketLineItemInput): TicketLineItem => ({
   quantity: input.getQuantity(),
   menuItemId: input.getMenuitemid(),
   name: input.getName(),
+});
+
+export const convertDelivery = (input: DeliveryInput): Delivery => {
+  const deliveryInfo = input.getDeliveryinfo()!;
+  const assignedCourierId = input.getAssignedcourierid();
+  return {
+    id: deliveryInfo.getId(),
+    state: convertDeliveryState(deliveryInfo.getState()),
+    assignedCourier: assignedCourierId ? emptyCourier(assignedCourierId) : null,
+    courierActions: input.getCourieractionsList().map((info) => ({
+      type: convertDeliveryAction(info.getType()),
+    })),
+  };
+};
+
+export const convertCourier = (input: CourierInput): Courier => ({
+  id: input.getId(),
+  available: input.getAvailable(),
+  plan: emptyCourierPlan(),
+});
+
+export const convertCourierPlan = (input: CourierPlanInput): CourierPlan => ({
+  actions: input.getActionsList().map(convertCourierAction),
+});
+
+const convertCourierAction = (input: CourierActionInput): CourierAction => ({
+  type: convertDeliveryAction(input.getType()),
+  address: input.getAddress(),
+  delivery: emptyDelivery(input.getDeliveryid()),
+  time: input.getTime()!.toDate().toISOString(),
 });
 
 const convertMoney = (input: MoneyInput): Money => ({

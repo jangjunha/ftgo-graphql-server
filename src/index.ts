@@ -16,6 +16,7 @@ import { OrderHistoryService } from "./proxies/order-history";
 import { ConsumerService } from "./proxies/consumer";
 import { RestaurantService } from "./proxies/restaurant";
 import { AccountingService } from "./proxies/accounting";
+import { DeliveryService } from "./proxies/delivery";
 
 export interface AppContext {
   auth?: AuthResult;
@@ -25,6 +26,7 @@ export interface AppContext {
   consumerService: ConsumerService;
   restaurantService: RestaurantService;
   accountingService: AccountingService;
+  deliveryService: DeliveryService;
 }
 
 const jwtCheck = auth({
@@ -76,6 +78,10 @@ async function run() {
         ),
         accountingService: new AccountingService(
           process.env.ACCOUNTING_SERVICE_URL!,
+          req.auth
+        ),
+        deliveryService: new DeliveryService(
+          process.env.DELIVERY_SERVICE_URL!,
           req.auth
         ),
       }),

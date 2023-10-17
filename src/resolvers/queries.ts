@@ -1,6 +1,8 @@
 import { QueryResolvers } from "../generated/graphql";
 import {
   convertConsumer,
+  convertCourier,
+  convertDelivery,
   convertOrderHistory,
   convertRestaurant,
   convertTicket,
@@ -30,6 +32,16 @@ const queries: QueryResolvers = {
   async ticket(_, { id }, { kitchenService }) {
     const ticket = await kitchenService.getTicket(id);
     return convertTicket(ticket);
+  },
+
+  async delivery(_, { id }, { deliveryService }) {
+    const delivery = await deliveryService.getDelivery(id);
+    return convertDelivery(delivery);
+  },
+
+  async courier(_, { id }, { deliveryService }) {
+    const courier = await deliveryService.getCourier(id);
+    return convertCourier(courier);
   },
 };
 

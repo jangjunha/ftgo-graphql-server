@@ -1,11 +1,12 @@
 import {
   Account,
   Consumer,
+  Courier,
   MutationResolvers,
   Order,
 } from "../generated/graphql";
 import { auth } from "../proxies/auth";
-import { convertAccount, convertConsumer } from "./utils";
+import { convertAccount, convertConsumer, convertCourier } from "./utils";
 import { convertOrder } from "./utils";
 
 const resolver: MutationResolvers = {
@@ -80,6 +81,40 @@ const resolver: MutationResolvers = {
   ): Promise<Account> {
     const account = await accountingService.withdrawAccount(accountId, amount);
     return convertAccount(account);
+  },
+
+  async pickupDelivery(_, { id }, { deliveryService }): Promise<string> {
+    await deliveryService.pickupDelivery(id);
+    return id;
+  },
+
+  async dropoffDelivery(_, { id }, { deliveryService }): Promise<string> {
+    await deliveryService.dropoffDelivery(id);
+    return id;
+  },
+
+  async createCourier(_, { c: input }, { deliveryService }): Promise<string> {
+    const courier = await deliveryService.createCourier();
+    const id = courier.getId();
+    await auth.users.create({
+      email: input.email,
+      password: input.password,
+      app_metadata: {
+        "auth/courier-id": id,
+      },
+      connection: "Username-Password-Authentication",
+    });
+    return id;
+  },
+
+  async updateCourierAvailability(
+    _,
+    { id, available },
+    { deliveryService }
+  ): Promise<Courier> {
+    await deliveryService.updateCourierAvailability(id, available);
+    const courier = await deliveryService.getCourier(id);
+    return convertCourier(courier);
   },
 };
 export default resolver;
