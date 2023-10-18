@@ -14,6 +14,9 @@ const resolver: DeliveryResolvers = {
 
   async ticket(delivery, {}, { kitchenService }) {
     const ticket = await kitchenService.getTicket(delivery.id);
+    if (ticket == null) {
+      throw new Error(`Cannot find ticket for delivery ${delivery.id}`);
+    }
     return convertTicket(ticket);
   },
 };

@@ -20,7 +20,7 @@ const resolver: OrderResolvers = {
 
   async ticket({ id: orderId }, _, { kitchenService }) {
     const ticket = await kitchenService.getTicket(orderId);
-    return convertTicket(ticket);
+    return ticket ? convertTicket(ticket) : null;
   },
 };
 export default resolver;

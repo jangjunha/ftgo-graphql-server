@@ -1,3 +1,4 @@
+import { GraphQLError } from "graphql";
 import { QueryResolvers } from "../generated/graphql";
 import {
   convertConsumer,
@@ -31,6 +32,9 @@ const queries: QueryResolvers = {
 
   async ticket(_, { id }, { kitchenService }) {
     const ticket = await kitchenService.getTicket(id);
+    if (ticket == null) {
+      throw new GraphQLError(`Cannot find ticket ${id}`);
+    }
     return convertTicket(ticket);
   },
 

@@ -13,6 +13,7 @@ import {
 import { generateGrpcCredentials } from "../auth";
 import { AuthResult } from "express-oauth2-jwt-bearer";
 import { Timestamp } from "google-protobuf/google/protobuf/timestamp_pb";
+import { Status } from "@grpc/grpc-js/build/src/constants";
 
 export class KitchenService {
   client: KitchenServiceClient;
@@ -65,7 +66,7 @@ export class KitchenService {
     );
   }
 
-  async getTicket(id: string): Promise<Ticket> {
+  async getTicket(id: string): Promise<Ticket | undefined> {
     const payload = new GetTicketPayload();
     payload.setTicketid(id);
     return new Promise((resolve, reject) =>
@@ -74,7 +75,11 @@ export class KitchenService {
         { credentials: this.credentials },
         (err, value) => {
           if (err != null) {
-            reject(err);
+            if (err.code == Status.NOT_FOUND) {
+              resolve(undefined);
+            } else {
+              reject(err);
+            }
             return;
           }
           if (value == null) {
